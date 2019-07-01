@@ -13,5 +13,6 @@ and it inspired me to go back and read some of the literature on ridge regressio
 One of the things that strikes me the most is the relationship between PCA and
 RR and how other decompositions might correspond to other regression methods.
 
-[This]() paper lays things out nicely and is a good start for thinking about
-something useful to do.
+[This](http://www.uwe-mortensen.de/FrankFriedmanStatViewChemometRegressionTools1993.pdf)
+paper lays things out nicely and is a good start for thinking about something
+useful to do.

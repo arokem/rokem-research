@@ -4,15 +4,15 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+[Ariel Rokem](https://arokem.org) is a data scientist at the [University of
+Washington eScience Institute](https://escience.washington.edu/).
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+Inspired by [Hogg's Research](http://hoggresearch.blogspot.com/), this web-page
+is a record of Ariel's ongoing research.
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+My rules:
 
+1. I must post once a week, except when on vacation.
 
-[jekyll-organization]: https://github.com/jekyll
+2. Posts should be about the research and development that I am doing
+
