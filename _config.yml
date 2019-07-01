@@ -16,8 +16,8 @@
 title: Rokem Research
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Inspired by [Hogg' Research](http://hoggresearch.blogspot.com/). My rules: 1. I must post once a week. 2. Posts must be about research and development activities.
-baseurl: "" # the subpath of your site, e.g. /blog
+  arokem's r&d
+baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://arokem.github.io/rokem-research" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: arokem
 github_username:  arokem
