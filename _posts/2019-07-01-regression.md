@@ -2,7 +2,6 @@
 layout: post
 title:  "Thinking about regression"
 date:   2019-07-01 09:22:47 -0700
-categories: regression
 ---
 
 Last week, [Kendrick Kay](http://cvnlab.net/home.shtml) was on a visit in

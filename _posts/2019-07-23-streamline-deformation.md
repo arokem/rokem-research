@@ -2,7 +2,6 @@
 layout: post
 title:  "Streamline deformations are hard"
 date:   2019-07-08
-categories: python, software, dipy, pyafq, tractography
 ---
 
 Not much research last week, due to vacation and grant writing. One thing to

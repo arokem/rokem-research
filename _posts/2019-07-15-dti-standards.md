@@ -2,7 +2,6 @@
 layout: post
 title:  "Should the default be the standard, or what people usually use?"
 date:   2019-07-08
-categories: python, software, dipy, dti
 ---
 
 A couple of weeks ago, we got a [bug report on

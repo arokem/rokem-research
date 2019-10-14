@@ -2,7 +2,6 @@
 layout: post
 title:  "Running Recobundles on the HCP dataset at scale"
 date:   2019-09-09
-categories: dMRI, DIPY, AFQ, AWS, HCP, cloud
 ---
 
 As a first effort on our [newly funded grant](https://projectreporter.nih.gov/project_info_description.cfm?aid=9886761&icde=46767460&ddparam=&ddvalue=&ddsub=&cr=2&csb=default&cs=ASC&pball=),

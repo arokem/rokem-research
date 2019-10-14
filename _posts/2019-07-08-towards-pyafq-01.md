@@ -2,7 +2,6 @@
 layout: post
 title:  "Towards a first release of pyAFQ"
 date:   2019-07-08
-categories: python, afq, software, oss, pulse2percept, xarray
 ---
 
 A Python version of AFQ is something that I have been working on for almost as

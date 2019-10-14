@@ -2,7 +2,6 @@
 layout: post
 title:  "More ridge regression"
 date:   2019-07-01 09:22:47 -0700
-categories: regression
 ---
 
 This week, I am finally going to be able to get back to work that started
