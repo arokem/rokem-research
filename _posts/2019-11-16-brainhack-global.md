@@ -22,7 +22,7 @@ conducted using six neuropixels probes in each experiment, targeting a number of
 cortical visual areas, as well as sub-cortical areas, primarily in hippocampus
 and thalamus. Because of the high throughput of the neuropixels probes, each
 experiment has simultaneous recordings from hundreds of single units, with the
-total of approximately 60 experiments totalling more than 10k neurons in all. In
+total of approximately 60 experiments totalling more than 100k neurons in all. In
 most cases, simultaneous recordings from well-isolated units in multiple visual
 areas are available and in some cases, recordings from thalamus and multiple
 cortical regions that target neurons with similar spatial receptive fields. In
