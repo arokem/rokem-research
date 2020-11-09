@@ -1,0 +1,7 @@
+---
+layout: post
+title:  "Finding visual pathways"
+date:   2020-11-09
+---
+
+Some recent work is focusing in on finding the primary visual pathways. This is motivated by a project in Jason Yeatman's lab that is looking at these pathways, and particularly some exciting work by Sendy Caffara that focuses on comparisons between properties of these pathways and physiological responses to visual stimuli. It's pretty amazing that you can compare properties of the brain at such different scales and find pretty tight correspondences. At any rate, Sendy has found a few ROIs that can be used to define endpoints and exclusion regions for streamlines in large tractographies (order 10M streamlines) that provide very nice optic radiations. David Bloom in my group has diligently worked to engineer a solution that makes pyAFQ even more flexible than before in defining custom bundles, so that we can integrate Sendy's work into the software. Finally, I have been working on integrating this solution into the pyAFQ API and to write an example that shows how to find the visual pathways. After a few experiments, I think that this is doable. The key, I believe is to generate a lot of streamlines around the part of the brain that we are interested, massively oversampling this part of the brain. And then use the ROIs to refine down to only the OR. I think that we can come up with a combination of fast tractography, and ROI-based and streamline-based bundle segmentation, that will provide nice OR segmentations. But I'll still need to demonstrate that.
