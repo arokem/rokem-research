@@ -4,11 +4,13 @@ title:  "Debugging workflow for R development"
 date:   2024-12-12
 ---
 
-Over the time that I have developed software with Python, I have developed a
-workflow for discovering and addressing bugs that I like to think of as fairly
-efficient. I might start with a few simple tests of the code that I am writing,
-to make sure that I am on the right path, and that the code runs through,
-producing reasonable outputs for some set of simple outputs. I use [`pytest`](https://docs.pytest.org/en/stable/) as a test harness, and so a typical development cycle might look like:
+Over the time that I have developed software with Python, I have grown to like
+a rather specific workflow for discovering and addressing bugs. I like to think
+of this workflow as fairly efficient. I might start with a few simple tests of
+the code that I am writing, to make sure that I am on the right path, and that
+the code runs through, producing reasonable outputs for some set of simple
+outputs. I use [`pytest`](https://docs.pytest.org/en/stable/) as a test
+harness, and so a typical development cycle might look like:
 
 - Start to develop some new code.
 - Pretty early on write some tests for this code (sometimes, but frankly rather rarely I might even start with the tests, aka test-driven development or TDD).
@@ -34,46 +36,50 @@ hard to know what's wrong. Pytest enables this kind of examination by using the
 pytest afqinsight/tests/test_parametric.py --pdb
 ```
 
-When the program hits an error, it will drop me into good old [pdb, which is the
-Python debugging environment](https://docs.python.org/3/library/pdb.html#debugger-commands). If I am getting results that don't make sense, I will
-often need to introduce "break points" into the program. That is, I will want
-to examine the program failing at a point earlier from the point at which
-the error is raised. This is because, for example, by the time an assertion
-error is raised in my tests, the state of the program that produced the error
-is no longer inspectable. One sneaky way to do this is to insert a 1/0 into
-the code at the point at which you want to examine the state of the program. This
-will raise a ZeroDivisionError, at which point the program will drop me into pdb,
-and I can get to work (I believe I may have picked this one up from Matthew
-Brett, when I was wet behind the ears.). I have been doing this for so long that
-writing the "appropriate" way of doing this (`import pdb; pdb.set_trace()`) seems
-like that many too many characters.  By the way, this approach works just as well
-if I am not doing development on the command line, but I am instead working
-inside of a Jupyter notebook and I hit some results that don't make sense. This
-is thanks to the Jupyter debug magic command, which also drops me into the
-debugger at the point at which an error was raised.
+When the program hits an error, it will drop me into good old
+[pdb, which is the Python debugging environment](https://docs.python.org/3/library/pdb.html#debugger-commands).
+If I am getting results that don't make sense, I will often need to introduce
+"break points" into the program. That is, I will want to examine the program
+failing at a point earlier from the point at which the error is raised. This is
+because, for example, by the time an assertion error is raised in my tests, the
+state of the program that produced the error is no longer inspectable. One
+sneaky way to do this is to insert a 1/0 into the code at the point at which
+you want to examine the state of the program. This will raise a
+ZeroDivisionError, at which point the program will drop me into pdb, and I can
+get to work (I believe I may have picked this one up from Matthew Brett, when I
+was wet behind the ears.) I have been doing this for so long that writing the
+"appropriate" code for inserting a breakpoint (`import pdb; pdb.set_trace()`)
+seems like that many too many characters. By the way, this approach works just
+as well if I am not doing development on the command line, but I am instead
+working inside of a Jupyter notebook and I hit some results that don't make
+sense. This is thanks to the Jupyter `debug` magic command, which also drops me
+into the debugger at the point at which an error was raised. This is all good and
+simple.
 
-At any rate, ever since I more recently started developing software in R ([here](https://github.com/tractometry/tractable)), I have been hankering for a similar
-workflow. Much or what I described above works quite well. For example, R provides an excellent test harness in the [`testthat`](https://testthat.r-lib.org/) library, so I can replicate my quasi-TDD development cycle quite nicely
-(adding in frequent visits to R documentation, stack overflow and google to figure out how to do the most basic things in this language)
+However, I more recently started developing software in R ([here](https://github.com/tractometry/tractable)), and I have been hankering for a similar
+workflow. Much of what I described above does work quite well. For example, R provides an excellent test harness in the [`testthat`](https://testthat.r-lib.org/) library, so I can replicate my quasi-TDD development cycle quite nicely
+(adding in frequent visits to R documentation, stack overflow and google to figure out how to do the most basic things in this language, because I am quite
+clueless about it for now.)
 
-but when it comes to debugging testthat seems to completely resists the kind of
-debugging that I have been accustomed to in my Python development with the
-`--pdb` flag. For example, there is no way (that I could figure out) to run
-testthat in a way that would drop you into a debugging session when an error is
-raised (either in the test code, or in the program that is exercised by the
-test). So, for example, if I am working in the zsh shell (because, yes, I am a cliche) and execute:
+but when it comes to debugging, testthat seems to completely resists the kind
+of facilities that I have been accustomed to in my Python development. For
+example, there is no way (that I could figure out) to run testthat in a way
+that would drop you into a debugging session when an error is raised(either in
+the test code, or in the program that is exercised by the test), which would be
+akin to the `--pdb` flag . So, for example, if I am working in the zsh shell
+(because, yes, I am a cliche) and execute:
 
 ```Rscript -e "devtools::test()"```[^1]
 
 [^1]: Natch, I actually run [`make test`](https://github.com/tractometry/tractable/blob/main/Makefile) because that's too many characters to be typing into a terminal every time I want to test my code.
 
 Errors will get recorded and reported, but as far as I can tell, there is no
-input that will make R stop running when it hits that error and drop me into an
-interactive debugging session. If I introduce breakpoints into the code by
-introducing `browser()` calls into the code that I want to break on, testthat
-will happily report that a browser debugging session happened, but will just
-keep going. So, how does one (especially one as inexperienced with R as me) make
-any progress debugging their code?
+input to the `test` function that will make R stop running when it hits that
+error and would drop me into an interactive debugging session. If I introduce
+breakpoints into the code by introducing `browser()` calls into the code,
+testthat will happily report that a browser debugging session happened, but
+will just keep going. So, how does one (especially one as inexperienced with R
+as me) make any progress debugging their code?
 
 ## Enter Positron
 
@@ -89,14 +95,16 @@ test files (haven't done it yet, to be completely honest, [but it might happen s
 library(testthat)
 ```
 
-and call all the calls to library code with `tractable::`, so that when the
-test file is run independently in a Positron session, the code can be run and
-all the functions that are defined within the tests can properly be found by R.
-When I do that, I can now hit the calls to `browser` and Positron will
+and append to all the calls to library code the necessary `tractable::`, so
+that when the test file is run independently in a Positron session, the code
+can be run and all the functions that are defined within the tests can properly
+be found by R. Thus, I open up the test files and ask Positron to run them for
+me, and when I do that, I can now hit the calls to `browser` and Positron will
 conveniently drop me into a browser session, where I can haplessly bumble
-through the variable defined in my code and try to make sense of things. So,
-for now, that seems to solve the problem for me, and I can get on causing some
-real damage. I will also add that the Makefile I have for this project also has a `make reinstall` rule, which runs:
+through the variable defined in my code and try to make sense of things. For
+now, that seems to solve the main problem for me, and I can get on causing some
+real damage. I will also add that the Makefile I have for this library also has
+a `make reinstall` rule, which runs:
 
 ```
 R CMD REMOVE tractable
